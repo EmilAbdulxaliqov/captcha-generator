@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Easy Alphanumeric Captcha Plugin Example</title>
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/minty/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #fafafa;
+        }
+
+        .container {
+            width: 100%;
+            margin: 150px auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .captcha-box {
+            border-radius: 5px;
+            border: 2px solid;
+            padding: 2rem;
+            width: 500px;
+            max-width: 700px;
+            margin: 20px 0;
+        }
+
+        #canvas {
+            width: 200px;
+            height: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="captcha-box">
+            <canvas id="canvas"></canvas>
+            <h2>Type The Code:</h2>
+            <input name="code" class="form-control">
+            <button id="valid" class="btn btn-danger mt-3">Test</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/jquery-captcha-lgh.js"></script>
+    <script>
+        const captcha = new Captcha($('#canvas'), {
+            length: 6
+        });
+
+        $('#valid').on('click', function () {
+            const ans = captcha.valid($('input[name="code"]').val());
+            alert(ans);
+            captcha.refresh();
+            $('input[name="code"]').val("")
+        })
+    </script>
+
+</body>
+
+</html>
